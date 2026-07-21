@@ -4,7 +4,9 @@
 
 ## 📑 Оглавление
 
-1. [📄 Документ 1: Протокол встречи](docs/01-meeting-protocol.md)
+1. 📄 Документ 1: Протокол встречи и анализ
+   - [Протокол встречи](docs/01-meeting-protocol.md)
+   - [Анализ протокола (метод трёх цветов)](docs/01a-protocol-analysis.md)
 2. [📊 Документ 2: Систематизация данных](docs/02-data-systematization.md)
 3. [📋 Документ 3: Реестр требований](docs/03-requirements-registry.md)
 4. [⚙️ Документ 4: Требования к системе (SRS)](docs/04-srs.md)
