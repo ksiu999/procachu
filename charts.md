@@ -1,13 +1,16 @@
-## Use Case Diagram
+# Диаграммы проекта «Прокачу»
 
+## 1. Use Case Diagram
+
+```mermaid
 flowchart LR
-subgraph Акторы
-Client((👤 Клиент))
-Operator((🎧 Оператор))
-CTO((⚙️ CTO))
-end
+    subgraph Actours [Акторы]
+        Client((Клиент))
+        Operator((Оператор))
+        CTO((CTO))
+    end
 
-    subgraph Система "Прокачу"
+    subgraph Prokachu [Система Прокачу]
         UC1[Регистрация по телефону/email]
         UC2[Просмотр карты станций]
         UC3[Бронирование велосипеда]
@@ -42,23 +45,27 @@ end
     UC8 -.->|include| UC14[Интеграция с PCI DSS шлюзом]
     UC7 -.->|extend| UC15[Автоматическое исключение из парка]
 
-    subgraph Внешние системы
+    subgraph External [Внешние системы]
         UC12
         UC13
         UC14
         UC15
     end
+```
 
-## Sequence Diagram
+---
 
+## 2. Sequence Diagram — Успешная аренда с автозавершением
+
+```mermaid
 sequenceDiagram
-autonumber
-participant C as Клиент
-participant App as Мобильное приложение
-participant API as Backend API
-participant Lock as Bluetooth-замок
-participant Pay as Платежный шлюз
-participant DB as База данных
+    autonumber
+    participant C as Клиент
+    participant App as Мобильное приложение
+    participant API as Backend API
+    participant Lock as Bluetooth-замок
+    participant Pay as Платежный шлюз
+    participant DB as База данных
 
     Note over C,DB: Сценарий: Успешная аренда с автозавершением по геолокации
 
@@ -93,44 +100,49 @@ participant DB as База данных
     API->>API: Проверяет: расстояние до станции < 20м?
     API->>Lock: Команда блокировки замка
     Lock-->>API: Замок закрыт
-    API->>DB: Рассчитывает стоимость (тариф × время)
+    API->>DB: Рассчитывает стоимость (тариф x время)
     API->>Pay: POST /charges {amount, token}
     Pay-->>API: {transactionId, status: SUCCESS}
     API->>DB: Обновляет статус аренды (status=COMPLETED)
     API-->>App: {receipt, amount}
     App-->>C: Push: "Аренда завершена. Списано: 225 руб."
     App-->>C: Email с чеком
+```
 
-## State Machine Diagram
+---
 
+## 3. State Machine Diagram — Жизненный цикл аренды
+
+```mermaid
 stateDiagram-v2
-[*] --> Забронирован: Клиент нажал "Забронировать"
+    [*] --> Booked: Клиент нажал Забронировать
 
-    Забронирован --> Активен: Старт аренды (разблокировка замка)
-    Забронирован --> Отменена: Истек срок брони (15 мин)
-    Забронирован --> Отменена: Клиент отменил бронь
+    Booked --> Active: Старт аренды (разблокировка замка)
+    Booked --> Cancelled: Истек срок брони 15 мин
+    Booked --> Cancelled: Клиент отменил бронь
 
-    Активен --> Завершена: Возврат на станцию (геолокация < 20м)
-    Активен --> Завершена: Ручное завершение оператором
-    Активен --> Принудительно_завершена: Велосипед не возвращен до 23:00
-    Активен --> Инцидент: Отчет о поломке
+    Active --> Completed: Возврат на станцию (геолокация < 20м)
+    Active --> Completed: Ручное завершение оператором
+    Active --> ForceCompleted: Велосипед не возвращен до 23:00
+    Active --> Incident: Отчет о поломке
 
-    Инцидент --> Завершена: Оператор подтвердил возврат
-    Инцидент --> На_ремонте: Оператор подтвердил поломку
+    Incident --> Completed: Оператор подтвердил возврат
+    Incident --> Maintenance: Оператор подтвердил поломку
 
-    На_ремонте --> Доступен: Ремонт завершен
-    Доступен --> Забронирован: Новый клиент забронировал
+    Maintenance --> Available: Ремонт завершен
+    Available --> Booked: Новый клиент забронировал
 
-    Завершена --> [*]
-    Принудительно_завершена --> [*]
-    Отменена --> [*]
+    Completed --> [*]
+    ForceCompleted --> [*]
+    Cancelled --> [*]
 
-    note right of Активен
+    note right of Active
         Тарификация активна
         Геолокация отслеживается каждые 10 сек
     end note
 
-    note right of Забронирован
+    note right of Booked
         Велосипед заблокирован для других
         Таймер: 15 минут
     end note
+```
