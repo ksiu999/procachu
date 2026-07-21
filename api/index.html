@@ -3,52 +3,74 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Прокачу API - Документация</title>
+    <title>Прокачу API — Swagger UI</title>
 
-    <!-- Redoc CDN -->
+    <!-- Подключаем стили Swagger UI -->
     <link
-      href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700"
       rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/swagger-ui-dist/swagger-ui.css"
     />
 
     <style>
       body {
         margin: 0;
         padding: 0;
-        font-family: "Roboto", sans-serif;
+        background-color: #fafafa;
+        font-family: sans-serif;
       }
 
+      /* Кнопка "Назад" поверх документации */
       .back-button {
         position: fixed;
         top: 20px;
         left: 20px;
-        z-index: 1000;
+        z-index: 9999;
         background: #2c3e50;
         color: white;
-        padding: 12px 24px;
+        padding: 10px 20px;
         text-decoration: none;
         border-radius: 6px;
-        font-weight: 500;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-        transition: all 0.3s ease;
+        font-weight: 600;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: background 0.3s ease;
       }
 
       .back-button:hover {
         background: #34495e;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
       }
 
-      redoc {
-        display: block;
+      /* Отступ сверху, чтобы кнопка не перекрывала заголовок Swagger */
+      #swagger-ui {
+        margin-top: 70px;
       }
     </style>
   </head>
   <body>
+    <!-- Кнопка возврата в оглавление -->
     <a href="../README.md" class="back-button">⬅️ Вернуться к оглавлению</a>
 
-    <redoc spec-url="./openapi.yaml"></redoc>
+    <!-- Контейнер для Swagger UI -->
+    <div id="swagger-ui"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"></script>
+    <!-- Подключаем скрипт Swagger UI -->
+    <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"></script>
+    <script>
+      window.onload = function () {
+        window.ui = SwaggerUIBundle({
+          url: "./openapi.yaml", // Путь к твоему файлу спецификации
+          dom_id: "#swagger-ui",
+          deepLinking: true,
+          presets: [
+            SwaggerUIBundle.presets.apis,
+            SwaggerUIBundle.SwaggerUIStandalonePreset,
+          ],
+          layout: "BaseLayout",
+          defaultModelsExpandDepth: 1,
+          defaultModelExpandDepth: 1,
+          docExpansion: "list", // Раскрывать только методы по умолчанию
+        });
+      };
+    </script>
   </body>
 </html>
