@@ -1,39 +1,54 @@
 <!doctype html>
-<html>
+<html lang="ru">
   <head>
-    <title>Прокачу API Documentation</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Прокачу API - Документация</title>
+
+    <!-- Redoc CDN -->
     <link
       href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700"
       rel="stylesheet"
     />
+
     <style>
       body {
         margin: 0;
         padding: 0;
+        font-family: "Roboto", sans-serif;
       }
-      .back-link {
+
+      .back-button {
         position: fixed;
-        top: 10px;
-        left: 10px;
+        top: 20px;
+        left: 20px;
         z-index: 1000;
-        background: #32325d;
+        background: #2c3e50;
         color: white;
-        padding: 8px 16px;
+        padding: 12px 24px;
         text-decoration: none;
-        border-radius: 4px;
-        font-family: sans-serif;
+        border-radius: 6px;
+        font-weight: 500;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
       }
-      .back-link:hover {
-        background: #52527a;
+
+      .back-button:hover {
+        background: #34495e;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+
+      redoc {
+        display: block;
       }
     </style>
   </head>
   <body>
-    <a href="../README.md" class="back-link">⬅️ Вернуться к оглавлению</a>
-    <!-- Redoc CDN -->
+    <a href="../README.md" class="back-button">⬅️ Вернуться к оглавлению</a>
+
     <redoc spec-url="./openapi.yaml"></redoc>
+
     <script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"></script>
   </body>
 </html>
