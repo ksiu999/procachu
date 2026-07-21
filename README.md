@@ -27,7 +27,7 @@ _(Здесь будет встроен фрейм Figma. Инструкцию п
   style="border: 1px solid rgba(0, 0, 0, 0.1);" 
   width="100%" 
   height="600" 
-  src="https://www.figma.com/embed?embed_host=share&url=СЮДА_ВСТАВИТЬ_ТВОЮ_ССЫЛКУ_ИЗ_FIGMA" 
+  src="https://www.figma.com/embed?embed_host=share&url=<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/aGG1th64a9ZCIcRBaLh48u/Bike-Sharing-App-UI--Community-?node-id=0-816&p=f&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&embed-host=share" 
   allowfullscreen>
 </iframe>
 
