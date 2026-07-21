@@ -1,3 +1,5 @@
+[⬅️ Вернуться к оглавлению](../README.md)
+
 ## 1. Use Case Diagram
 
 ```mermaid
@@ -50,3 +52,5 @@ flowchart LR
         UC15
     end
 ```
+
+[⬅️ Вернуться к оглавлению](../README.md)

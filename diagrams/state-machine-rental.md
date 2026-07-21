@@ -1,3 +1,5 @@
+[⬅️ Вернуться к оглавлению](../README.md)
+
 ## 3. State Machine Diagram — Жизненный цикл аренды
 
 ```mermaid
@@ -33,3 +35,5 @@ stateDiagram-v2
         Таймер: 15 минут
     end note
 ```
+
+[⬅️ Вернуться к оглавлению](../README.md)
