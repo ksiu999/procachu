@@ -1,56 +1,30 @@
 [⬅️ Вернуться к оглавлению](../README.md)
 
-## 1. Use Case Diagram
+# 1. Use Case Diagram
 
-```mermaid
-flowchart LR
-    subgraph Actours [Акторы]
-        Client((Клиент))
-        Operator((Оператор))
-        CTO((CTO))
-    end
+Диаграмма вариантов использования описывает, какие действия доступны каждому актору системы (Клиент, Оператор, CTO) и какие внешние системы задействованы.
 
-    subgraph Prokachu [Система Прокачу]
-        UC1[Регистрация по телефону/email]
-        UC2[Просмотр карты станций]
-        UC3[Бронирование велосипеда]
-        UC4[Старт аренды / Разблокировка замка]
-        UC5[Завершение аренды]
-        UC6[Просмотр истории поездок]
-        UC7[Отчет о поломке]
-        UC8[Пополнение баланса / Оплата]
-        UC9[Обработка возвратов средств]
-        UC10[Управление парком и станциями]
-        UC11[Мониторинг системы и логов]
-    end
+![Use Case Diagram](https://mermaid.ink/img/eyJjb2RlIjogImZsb3djaGFydCBMUlxuICAgIHN1YmdyYXBoIEFjdG91cnMgW1x1MDQxMFx1MDQzYVx1MDQ0Mlx1MDQzZVx1MDQ0MFx1MDQ0Yl1cbiAgICAgICAgQ2xpZW50KChcdTA0MWFcdTA0M2JcdTA0MzhcdTA0MzVcdTA0M2RcdTA0NDIpKVxuICAgICAgICBPcGVyYXRvcigoXHUwNDFlXHUwNDNmXHUwNDM1XHUwNDQwXHUwNDMwXHUwNDQyXHUwNDNlXHUwNDQwKSlcbiAgICAgICAgQ1RPKChDVE8pKVxuICAgIGVuZFxuXG4gICAgc3ViZ3JhcGggUHJva2FjaHUgW1x1MDQyMVx1MDQzOFx1MDQ0MVx1MDQ0Mlx1MDQzNVx1MDQzY1x1MDQzMCBcdTA0MWZcdTA0NDBcdTA0M2VcdTA0M2FcdTA0MzBcdTA0NDdcdTA0NDNdXG4gICAgICAgIFVDMVtcdTA0MjBcdTA0MzVcdTA0MzNcdTA0MzhcdTA0NDFcdTA0NDJcdTA0NDBcdTA0MzBcdTA0NDZcdTA0MzhcdTA0NGYgXHUwNDNmXHUwNDNlIFx1MDQ0Mlx1MDQzNVx1MDQzYlx1MDQzNVx1MDQ0NFx1MDQzZVx1MDQzZFx1MDQ0My9lbWFpbF1cbiAgICAgICAgVUMyW1x1MDQxZlx1MDQ0MFx1MDQzZVx1MDQ0MVx1MDQzY1x1MDQzZVx1MDQ0Mlx1MDQ0MCBcdTA0M2FcdTA0MzBcdTA0NDBcdTA0NDJcdTA0NGIgXHUwNDQxXHUwNDQyXHUwNDMwXHUwNDNkXHUwNDQ2XHUwNDM4XHUwNDM5XVxuICAgICAgICBVQzNbXHUwNDExXHUwNDQwXHUwNDNlXHUwNDNkXHUwNDM4XHUwNDQwXHUwNDNlXHUwMDMyXHUwNDMwXHUwNDNkXHUwNDM4XHUwNDM1IFx1MDQzMlx1MDQzNVx1MDQzYlx1MDQzZVx1MDQ0MVx1MDQzOFx1MDQzZlx1MDQzNVx1MDQzNCBdXG4gICAgICAgIFVDNFtcdTA0MjFcdTA0NDJcdTA0MzBcdTA0NDBcdTA0NDIgXHUwNDMwXHUwNDQwXHUwNDM1XHUwNDNkXHUwNDM0XHUwNDRiIC8gXHUwNDIwXHUwNDMwXHUwNDM3XHUwNDMxXHUwNDNiXHUwNDNlXHUwNDNhXHUwNDM4XHUwNDQwXHUwNDNlXHUwNDMyXHUwNDNhXHUwNDMwIFx1MDQzN1x1MDQzMFx1MDQzY1x1MDQzYVx1MDQzMF1cbiAgICAgICAgVUM1W1x1MDQxN1x1MDQzMFx1MDQzMlx1MDQzNVx1MDQ0MFx1MDQ0OFx1MDQzNVx1MDQzZFx1MDQzOFx1MDQzNSBcdTA0MzBcdTA0NDBcdTA0MzVcdTA0M2RcdTA0MzRcdTA0NGJdXG4gICAgICAgIFVDNltcdTA0MWZcdTA0NDBcdTA0M2VcdTA0NDFcdTA0M2NcdTA0M2VcdTA0NDJcdTA0NDAgXHUwNDM4XHUwNDMxXHUwNDQyXHUwNDNlXHUwNDQwXHUwNDM4XHUwNDMzIFx1MDQzZlx1MDQzZVx1MDQzNVx1MDQzN1x1MDQzNFx1MDQzZVx1MDQzYV1cbiAgICAgICAgVUM3W1x1MDQxZVx1MDQ0Mlx1MDQ0N1x1MDQzNVx1MDQ0MiBcdTA0M2UgXHUwNDNmXHUwNDNlXHUwNDNiXHUwNDNlXHUwNDNjXHUwNDNhXHUwNDM1XVxuICAgICAgICBVQzhbXHUwNDFmXHUwNDNlXHUwNDNjXHUwNDNlXHUwNDNiXHUwNDNkXHUwNDM1XHUwNDNkXHUwNDM4XHUwNDM1IFx1MDQzMVx1MDQzMFx1MDQzYlx1MDQzMFx1MDQzZFx1MDQ0MVx1MDQzMCBcIFx1MDQxZVx1MDNmXHUwNDNiXHUwNDMwXHUwNDQyXHUwNDMwXVxuICAgICAgICBVQzlbXHUwNDFlXHUwNDMxXHUwNDQwXHUwNDMwXHUwNDMxXHUwNDNlXHUwNDQyXHUwNDNhXHUwNDMwIFx1MDQzMlx1MDQzZVx1MDQzN1x1MDQzMlx1MDQ0MFx1MDQzMFx1MDQ0Mlx1MDQzZVx1MDQzMiBcdTA0NDFcdTA0NDBcdTA0MzVcdTA0MzRcdTA0NDFcdTA0NDJcdTA0MzJdXG4gICAgICAgIFVDMTBbXHUwNDIzXHUwNDNmXHUwNDQwXHUwNDMwXHUwNDMyXHUwNDNiXHUwNDM1XHUwNDNkXHUwNDM4XHUwNDM1IFx1MDQzZlx1MDQzMFx1MDQ0MFx1MDQzYVx1MDQzZVx1MDQzYyBcdTA0MzggXHUwNDQxXHUwNDQyXHUwNDMwXHUwNDNkXHUwNDQ2XHUwNDM4XHUwNDRmXHUwNDNjXHUwNDM4XVxuICAgICAgICBVQzExW1x1MDQxY1x1MDQzZVx1MDQzZFx1MDQzOFx1MDQ0Mlx1MDQzZVx1MDQ0MFx1MDQzOFx1MDQzZFx1MDQzMyBcdTA0NDFcdTA0MzhcdTA0NDFcdTA0NDJcdTA0MzVcdTA0M2NcdTA0NGIgXHUwNDM4IFx1MDQzYlx1MDQzZVx1MDQzM1x1MDQzZVx1MDQzMl1cbiAgICBlbmRcblxuICAgIENsaWVudCAtLT4gVUMxXG4gICAgQ2xpZW50IC0tPiBVQzJcbiAgICBDbGllbnQgLS0-IFVDM1xuICAgIENsaWVudCAtLT4gVUM0XG4gICAgQ2xpZW50IC0tPiBVQzVcbiAgICBDbGllbnQgLS0-IFVDNlxuICAgIENsaWVudCAtLT4gVUM3XG4gICAgQ2xpZW50IC0tPiBVQzhcblxuICAgIE9wZXJhdG9yIC0tPiBVQzlcbiAgICBPcGVyYXRvciAtLT4gVUM2XG5cbiAgICBDVE8gLS0-IFVDMTBcbiAgICBDVE8gLS0-IFVDMTFcbiAgICBDVE8gLS0-IFVDNlxuXG4gICAgVUM1IC0uLT58aW5jbHVkZXwgVUMxMltcdTA0MWZcdTA0NDBcdTA0M2VcdTA0MzJcdTA0MzVcdTA0NDBcdTA0M2FcdTA0MzAgXHUwNDMzXHUwNDM1XHUwNDNlXHUwNDNiXHUwNDNlXHUwNDNhXHUwNDMwXHUwNDQ2XHUwNDM4XHUwNDM4XVxuICAgIFVDNCAtLi0-fGluY2x1ZGV8IFVDMTNbXHUwNDFhXHUwNDNlXHUwNDNjXHUwNDMwXHUwNDNkXHUwNDM0XHUwNDMwIEJsdWV0b290aC1cdTA0MzdcdTA0MzBcdTA0M2NcdTA0M2FcdTA0NDNdXG4gICAgVUM4IC0uLT58aW5jbHVkZXwgVUMxNFtcdTA0MThcdTA0M2RcdTA0NDJcdTA0MzVcdTA0MzNcdTA0NDBcdTA0MzBcdTA0NDZcdTA0MzhcdTA0NGYgXHUwNDQxIFBDSSBEU1MgXHUwNDQ4XHUwNDNiXHUwNDRlXHUwNDM3XHUwNDNlXHUwNDNjXVxuICAgIFVDNyAtLi0-fGV4dGVuZHwgVUMxNVtcdTA0MTBcdTA0MzJcdTA0NDJcdTA0M2VcdTA0M2NcdTA0MzBcdTA0NDJcdTA0MzhcdTA0NDdcdTA0MzVcdTA0NDFcdTA0M2FcdTA0M2VcdTA0MzUgXHUwNDM4XHUwNDQxXHUwNDNhXHUwNDNiXHUwNDRlXHUwNDQ3XHUwNDM1XHUwNDNkXHUwNDM4XHUwNDM1IFx1MDQzOFx1MDQzNyBcdTA0M2ZcdTA0MzBcdTA0NDBcdTA0M2FcdTA0MzBdXG5cbiAgICBzdWJncmFwaCBFeHRlcm5hbCBbXHUwNDEyXHUwNDNkXHUwNDM1XHUwNDQ4XHUwNDNkXHUwNDM4XHUwNDM1IFx1MDQ0MVx1MDQzOFx1MDQ0MVx1MDQ0Mlx1MDQzNVx1MDQzY1x1MDQ0Yl1cbiAgICAgICAgVUMxMlxuICAgICAgICBVQzEzXG4gICAgICAgIFVDMTRcbiAgICAgICAgVUMxNVxuICAgIGVuZCIsICJtZXJtYWlkIjogeyJ0aGVtZSI6ICJkZWZhdWx0In19)
 
-    Client --> UC1
-    Client --> UC2
-    Client --> UC3
-    Client --> UC4
-    Client --> UC5
-    Client --> UC6
-    Client --> UC7
-    Client --> UC8
+> 💡 _Если изображение не отображается, кликните по нему — откроется интерактивная версия на [Mermaid.ink](https://mermaid.ink/)_
 
-    Operator --> UC9
-    Operator --> UC6
+## Расшифровка акторов
 
-    CTO --> UC10
-    CTO --> UC11
-    CTO --> UC6
+| Актор           | Роль                                                                                                                                           |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| 👤 **Клиент**   | Основной пользователь сервиса. Регистрируется, ищет станции, бронирует и арендует велосипеды, оплачивает поездки, оставляет отчёты о поломках. |
+| 🎧 **Оператор** | Сотрудник поддержки. Обрабатывает возвраты средств, просматривает историю поездок клиентов для разрешения споров.                              |
+| ⚙️ **CTO**      | Технический директор. Управляет парком и станциями, мониторит логи и работоспособность системы.                                                |
 
-    UC5 -.->|include| UC12[Проверка геолокации]
-    UC4 -.->|include| UC13[Команда Bluetooth-замку]
-    UC8 -.->|include| UC14[Интеграция с PCI DSS шлюзом]
-    UC7 -.->|extend| UC15[Автоматическое исключение из парка]
+## Расшифровка внешних систем
 
-    subgraph External [Внешние системы]
-        UC12
-        UC13
-        UC14
-        UC15
-    end
-```
+| Система                            | Назначение                                              |
+| ---------------------------------- | ------------------------------------------------------- |
+| Проверка геолокации                | Валидация возврата велосипеда на станцию (радиус < 20м) |
+| Команда Bluetooth-замку            | Отправка сигнала разблокировки/блокировки через BLE     |
+| Интеграция с PCI DSS шлюзом        | Безопасная обработка платежных данных                   |
+| Автоматическое исключение из парка | Блокировка неисправного велосипеда после отчета         |
 
-[⬅️ Вернуться к оглавлению](../README.md)
+---
+
+[⬅️ Вернуться к оглавлению](../README.md) | [Следующая: Sequence Diagram →](sequence-rental.md)
